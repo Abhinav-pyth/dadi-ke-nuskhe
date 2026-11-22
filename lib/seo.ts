@@ -6,8 +6,8 @@ import type { Lang } from "./types";
 
 export const DEFAULT_OG_IMAGE = {
   url: "/images/og-default.jpg",
-  width: 1200,
-  height: 630,
+  width: 1392,
+  height: 752,
   alt: "Traditional Indian ingredients arranged on a warm cream surface",
 };
 

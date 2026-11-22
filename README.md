@@ -108,7 +108,14 @@ Copy `.env.example` to `.env.local`. All variables are optional; the site runs w
 
 ## Images
 
-`public/images/hero-ingredients.jpg` (4:3) and `public/images/og-default.jpg` (1200×630) are AI-generated placeholders. Replace them with photography of the same dimensions before launch; keep the file names or update `lib/seo.ts` and `components/pages/HomePage.tsx`.
+Both images are AI-generated placeholders and are declared at their true pixel size:
+
+| File | Size | Declared in |
+| --- | --- | --- |
+| `public/images/hero-ingredients.jpg` | 1184 × 880 | `components/pages/HomePage.tsx` |
+| `public/images/og-default.jpg` | 1392 × 752 | `lib/seo.ts` (`DEFAULT_OG_IMAGE`) |
+
+Replace each with photography at the same pixel dimensions and keep the file names, so no code changes are needed. If a replacement is a different size, update the declared `width`/`height` in those two files to match. The hero is cropped by `object-cover` at 320, 420 and 480 px tall, so keep its subject centred; `og-default.jpg` is the social card for every page.
 
 ## Deployment
 

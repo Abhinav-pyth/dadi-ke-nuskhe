@@ -126,8 +126,8 @@ export function HomePage({ lang }: { lang: Lang }) {
                     ? "गुड़, तिल, सूखे मेवे, हल्दी और मिट्टी के बर्तन — पारंपरिक भारतीय रसोई"
                     : "Jaggery, sesame, dry fruits, turmeric and clay pots — a traditional Indian kitchen"
                 }
-                width={1200}
-                height={900}
+                width={1184}
+                height={880}
                 priority
                 sizes="(min-width: 1024px) 520px, 100vw"
                 className="h-[320px] w-full object-cover sm:h-[420px] lg:h-[480px]"
