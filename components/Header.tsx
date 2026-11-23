@@ -1,6 +1,7 @@
 "use client";
 
 import { Menu, Search, X } from "lucide-react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -72,7 +73,7 @@ export function Header({ lang, pairs }: { lang: Lang; pairs: Record<string, stri
 
         <nav aria-label={labels.nav.menu} className="hidden items-center gap-0.5 xl:flex">
           {items.map((item) => (
-            <a
+            <Link
               key={item.href}
               href={item.href}
               aria-current={isActive(item.href) ? "page" : undefined}
@@ -84,7 +85,7 @@ export function Header({ lang, pairs }: { lang: Lang; pairs: Record<string, stri
               )}
             >
               {item.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -135,7 +136,7 @@ export function Header({ lang, pairs }: { lang: Lang; pairs: Record<string, stri
             <SearchBar lang={lang} onNavigate={() => setMenuOpen(false)} placeholder={labels.search.placeholder} />
             <nav aria-label={labels.nav.menu} className="grid gap-1">
               {items.map((item) => (
-                <a
+                <Link
                   key={item.href}
                   href={item.href}
                   aria-current={isActive(item.href) ? "page" : undefined}
@@ -145,25 +146,25 @@ export function Header({ lang, pairs }: { lang: Lang; pairs: Record<string, stri
                   )}
                 >
                   {item.label}
-                </a>
+                </Link>
               ))}
             </nav>
             <div className="grid gap-2 border-t border-leaf-900/10 pt-5 text-sm">
-              <a href={`/${lang}/${lang === "hi" ? "samagri" : "ingredients"}`} className="px-1 py-1 text-leaf-800">
+              <Link href={`/${lang}/${lang === "hi" ? "samagri" : "ingredients"}`} className="px-1 py-1 text-leaf-800">
                 {labels.nav.ingredients}
-              </a>
-              <a href={`/${lang}/${lang === "hi" ? "sangrah" : "collections"}`} className="px-1 py-1 text-leaf-800">
+              </Link>
+              <Link href={`/${lang}/${lang === "hi" ? "sangrah" : "collections"}`} className="px-1 py-1 text-leaf-800">
                 {labels.nav.collections}
-              </a>
-              <a href={`/${lang}/about`} className="px-1 py-1 text-leaf-800">
+              </Link>
+              <Link href={`/${lang}/about`} className="px-1 py-1 text-leaf-800">
                 {labels.nav.about}
-              </a>
+              </Link>
             </div>
             <div className="flex flex-wrap items-center gap-3 border-t border-leaf-900/10 pt-5">
               <LanguageSwitcher lang={lang} pairs={pairs} />
-              <a href={`/${lang}/medical-disclaimer`} className="text-sm text-ink-muted underline underline-offset-4">
+              <Link href={`/${lang}/medical-disclaimer`} className="text-sm text-ink-muted underline underline-offset-4">
                 {labels.common.disclaimer}
-              </a>
+              </Link>
             </div>
           </div>
         </div>

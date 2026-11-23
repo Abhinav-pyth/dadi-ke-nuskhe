@@ -8,6 +8,8 @@ import { cn } from "@/lib/utils";
 /** How long the first-load splash stays up, and the floor for route changes. */
 const SPLASH_MS = 720;
 const NAV_MS = 320;
+/** Hard cap: the veil hides itself after this long, however the route ends. */
+const SAFETY_MS = 8000;
 
 /**
  * Page-wide loading feedback: a thin progress bar pinned to the top of the
@@ -24,6 +26,7 @@ export function PageLoader({ label }: { label: string }) {
   const [progress, setProgress] = useState(10);
   const shownAt = useRef<number | null>(null);
   const hideTimer = useRef<number | null>(null);
+  const safetyTimer = useRef<number | null>(null);
   const hasRendered = useRef(false);
 
   const clearHideTimer = useCallback(() => {
@@ -33,12 +36,31 @@ export function PageLoader({ label }: { label: string }) {
     }
   }, []);
 
+  const clearSafetyTimer = useCallback(() => {
+    if (safetyTimer.current !== null) {
+      window.clearTimeout(safetyTimer.current);
+      safetyTimer.current = null;
+    }
+  }, []);
+
+  const finish = useCallback(() => {
+    clearHideTimer();
+    clearSafetyTimer();
+    setProgress(100);
+    setActive(false);
+    shownAt.current = null;
+  }, [clearHideTimer, clearSafetyTimer]);
+
   const begin = useCallback(() => {
     clearHideTimer();
+    clearSafetyTimer();
     if (shownAt.current === null) shownAt.current = Date.now();
     setProgress(10);
     setActive(true);
-  }, [clearHideTimer]);
+    // If the navigation is cancelled, throws, or the route never paints, this
+    // still hides the veil instead of leaving it covering the page.
+    safetyTimer.current = window.setTimeout(finish, SAFETY_MS);
+  }, [clearHideTimer, clearSafetyTimer, finish]);
 
   // Start loading on any same-origin link click, before the route changes.
   useEffect(() => {
@@ -77,16 +99,16 @@ export function PageLoader({ label }: { label: string }) {
     clearHideTimer();
     hideTimer.current = window.setTimeout(
       () => {
-        setProgress(100);
-        setActive(false);
-        shownAt.current = null;
         hideTimer.current = null;
+        finish();
       },
       Math.max(0, minimum - elapsed),
     );
 
     return clearHideTimer;
-  }, [pathname, clearHideTimer]);
+  }, [pathname, clearHideTimer, finish]);
+
+  useEffect(() => clearSafetyTimer, [clearSafetyTimer]);
 
   // Ease the bar towards 92% while the route is still loading.
   useEffect(() => {
