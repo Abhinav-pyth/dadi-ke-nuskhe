@@ -116,156 +116,115 @@
 
 
 /* --------------------------------------------------------------------------
- * Optional GTA6-style neon skin.
- *
- * Off by default: nothing here applies until <html data-theme="gta6">, which
- * only the theme toggle (and its pre-paint script) can set. It re-tints the
- * existing warm palette rather than replacing layout, so every page, link and
- * structured-data block keeps working unchanged.
+ * Motion: the animated brand icon and the page-wide loading animation.
  * ------------------------------------------------------------------------ */
-[data-theme="gta6"] {
-  color-scheme: dark;
-
-  /* Safety and emergency notices need readable, high-contrast dark surfaces
-     rather than the light cream/amber they use in the classic skin. */
-  --notice-amber-bg: #2e1509;
-  --notice-amber-text: #ffe6bd;
-  --notice-amber-heading: #ffcc33;
-  --notice-emergency-bg: #2b0716;
-  --notice-emergency-text: #ffd3e2;
-  --notice-emergency-border: rgba(255, 46, 136, 0.55);
-  --notice-emergency-heading: #ff8ab8;
-  --notice-emergency-action: #ff2e88;
-  --notice-emergency-action-hover: #ff5fa2;
-  --notice-emergency-action-text: #12061f;
-  --badge-warning-bg: #2b0716;
-  --badge-warning-text: #ffb3d2;
-  --badge-warning-border: rgba(255, 46, 136, 0.5);
+@keyframes icon-wiggle {
+  0%,
+  100% {
+    transform: rotate(-5deg) scale(1);
+  }
+  25% {
+    transform: rotate(5deg) scale(1.06);
+  }
+  50% {
+    transform: rotate(-4deg) scale(1.04);
+  }
+  75% {
+    transform: rotate(4deg) scale(1.1);
+  }
 }
 
-[data-theme="gta6"] body[class] {
-  background-color: #0b0416;
-  background-image:
-    radial-gradient(1100px 560px at 10% -10%, rgba(255, 46, 136, 0.3), transparent 62%),
-    radial-gradient(900px 520px at 92% 2%, rgba(0, 214, 255, 0.22), transparent 64%),
-    linear-gradient(180deg, #0b0416 0%, #190730 48%, #2a0a22 100%);
-  color: #f4e9ff;
+.icon-animated {
+  animation: icon-wiggle 2.8s ease-in-out infinite;
+  transform-origin: 50% 60%;
+  will-change: transform;
 }
 
-[data-theme="gta6"] header[class] {
-  background-color: rgba(11, 4, 22, 0.92);
-  border-bottom-color: rgba(255, 46, 136, 0.45);
-  box-shadow: 0 14px 44px -26px rgba(255, 46, 136, 0.85);
+/* Speed the wiggle up while its link or button is hovered or focused. */
+a:hover .icon-animated,
+a:focus-visible .icon-animated,
+button:hover .icon-animated,
+button:focus-visible .icon-animated {
+  animation-duration: 0.9s;
 }
 
-/* A pink-to-cyan sunset rule under the sticky header. */
-[data-theme="gta6"] header[class]::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 0 0;
-  height: 2px;
-  background: linear-gradient(90deg, #ff2e88, #ffb300, #00e5ff);
-  box-shadow: 0 0 18px rgba(255, 46, 136, 0.75);
+@keyframes loader-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-[data-theme="gta6"] header[class] a,
-[data-theme="gta6"] header[class] button,
-[data-theme="gta6"] header[class] svg {
-  color: #ffe9fb;
+:root {
+  --loader-veil: rgba(251, 247, 238, 0.86);
+  --loader-track: rgba(23, 63, 41, 0.14);
+  --loader-accent: #3d7a55;
+  --loader-accent-2: #dd9c3c;
+  --loader-label: #5b6b62;
+  --progress-gradient: linear-gradient(90deg, #2b6242, #dd9c3c, #b4553c);
+  --progress-glow: rgba(221, 156, 60, 0.45);
 }
 
-[data-theme="gta6"] header[class] svg {
-  color: #5ff2ff;
+.page-progress {
+  position: fixed;
+  inset: 0 auto auto 0;
+  z-index: 90;
+  height: 3px;
+  border-radius: 0 9999px 9999px 0;
+  background: var(--progress-gradient);
+  box-shadow: 0 0 10px var(--progress-glow);
+  pointer-events: none;
+  transition:
+    width 0.25s ease,
+    opacity 0.35s ease;
 }
 
-[data-theme="gta6"] footer[class] {
-  background-color: #08020f;
-  border-top-color: rgba(255, 46, 136, 0.45);
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  background: var(--loader-veil);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  pointer-events: none;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
 }
 
-/* Surfaces */
-[data-theme="gta6"] [class*="bg-cream"] {
-  background-color: #1a0b2c;
-}
-[data-theme="gta6"] [class*="bg-leaf-50"] {
-  background-color: #2a1043;
-}
-[data-theme="gta6"] [class*="bg-leaf-800"],
-[data-theme="gta6"] [class*="bg-leaf-900"] {
-  background-color: #08020f;
-}
-[data-theme="gta6"] [class*="bg-leaf-700"] {
-  background-color: #ff2e88;
-}
-[data-theme="gta6"] [class*="bg-saffron-100"] {
-  background-color: #3a1608;
-}
-/* Type */
-[data-theme="gta6"] [class*="text-leaf-9"],
-[data-theme="gta6"] [class*="text-leaf-8"] {
-  color: #ffe9fb;
-}
-[data-theme="gta6"] [class*="text-leaf-7"],
-[data-theme="gta6"] [class*="text-leaf-6"] {
-  color: #5ff2ff;
-}
-[data-theme="gta6"] [class*="text-ink"] {
-  color: #e3d3f7;
-}
-[data-theme="gta6"] .text-ink-muted {
-  color: #c9b2e4;
-}
-[data-theme="gta6"] .text-ink-soft {
-  color: #a68bc6;
-}
-[data-theme="gta6"] [class*="text-saffron"] {
-  color: #ffcc33;
-}
-[data-theme="gta6"] [class*="text-cream"] {
-  color: #f7edff;
-}
-[data-theme="gta6"] [class*="text-clay"] {
-  color: #ff8ab8;
+.page-loader--visible {
+  opacity: 1;
+  visibility: visible;
 }
 
-/* Neon edges */
-[data-theme="gta6"] [class*="border-leaf-900"],
-[data-theme="gta6"] [class*="border-leaf-200"],
-[data-theme="gta6"] [class*="border-saffron-200"],
-[data-theme="gta6"] [class*="divide-leaf-900"] > * + * {
-  border-color: rgba(255, 46, 136, 0.32);
+.page-loader--hidden {
+  opacity: 0;
+  visibility: hidden;
 }
 
-[data-theme="gta6"] .surface {
-  box-shadow:
-    0 0 0 1px rgba(255, 46, 136, 0.35),
-    0 26px 60px -34px rgba(0, 229, 255, 0.6);
+.page-loader__panel {
+  display: grid;
+  justify-items: center;
+  gap: 0.85rem;
 }
 
-[data-theme="gta6"] h1,
-[data-theme="gta6"] h2 {
-  color: #fff2fb;
-  text-shadow:
-    0 0 26px rgba(255, 46, 136, 0.45),
-    0 2px 0 rgba(0, 0, 0, 0.35);
+.page-loader__ring {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 9999px;
+  border: 3px solid var(--loader-track);
+  border-top-color: var(--loader-accent);
+  border-right-color: var(--loader-accent-2);
+  animation: loader-spin 0.9s linear infinite;
 }
 
-[data-theme="gta6"] .eyebrow {
-  color: #ffcc33;
-}
-
-[data-theme="gta6"] ::selection {
-  background: #ff2e88;
-  color: #0b0416;
-}
-
-[data-theme="gta6"] :focus-visible {
-  outline-color: #00e5ff;
-}
-
-[data-theme="gta6"] .skip-link:focus {
-  background: #ff2e88;
-  color: #0b0416;
+.page-loader__label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--loader-label);
 }
 
 /* Recipe and guide printing: strip chrome, keep content readable. */
@@ -274,7 +233,9 @@
   footer,
   nav,
   [data-print-hidden],
-  .no-print {
+  .no-print,
+  .page-loader,
+  .page-progress {
     display: none !important;
   }
 

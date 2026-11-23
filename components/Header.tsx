@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { Logo } from "@/components/Logo";
 import { SearchBar } from "@/components/SearchBar";
-import { ThemeToggle } from "@/components/ThemeToggle";
 import { t } from "@/lib/copy";
 import { sectionPath } from "@/lib/sections";
 import type { Lang, SectionKey } from "@/lib/types";
@@ -78,7 +77,7 @@ export function Header({ lang, pairs }: { lang: Lang; pairs: Record<string, stri
               href={item.href}
               aria-current={isActive(item.href) ? "page" : undefined}
               className={cn(
-                "rounded-full px-2.5 py-2 text-[13px] font-medium transition-colors",
+                "whitespace-nowrap rounded-full px-2.5 py-2 text-[13px] font-medium transition-colors",
                 isActive(item.href)
                   ? "bg-leaf-50 text-leaf-900"
                   : "text-ink-muted hover:bg-leaf-50/70 hover:text-leaf-900",
@@ -105,8 +104,6 @@ export function Header({ lang, pairs }: { lang: Lang; pairs: Record<string, stri
           </button>
 
           <LanguageSwitcher lang={lang} pairs={pairs} className="hidden sm:inline-flex" />
-
-          <ThemeToggle lang={lang} />
 
           <button
             type="button"

@@ -182,10 +182,6 @@ const en = {
     readingBody:
       "Dadi maa and dada ji are the two narrative voices of this site, not real people or clinicians. Every line under “science” comes from the sources listed at the bottom of this page — nothing is invented for the story.",
     sourcesCta: "Read the sources for this page",
-    theme: "GTA6 look",
-    themeOn: "Switch back to the classic look",
-    themeOff: "Switch on the GTA6 neon look",
-    themeHint: "Optional neon theme, off by default. Your choice is saved on this device.",
     homeTitle: "One nuskha, two voices",
     homeLead:
       "Dadi maa has a preparation for everything. Dada ji reads the evidence behind it — including when the honest answer is “not enough research”.",
@@ -506,10 +502,6 @@ const hi: Copy = {
     readingBody:
       "दादी माँ और दादा जी इस साइट की दो कथा-आवाज़ें हैं, कोई असली व्यक्ति या डॉक्टर नहीं। “साइंस” के नीचे लिखी हर बात इस पृष्ठ के अंत में दिए स्रोतों से ली गई है — कहानी के लिए कुछ गढ़ा नहीं गया।",
     sourcesCta: "इस पृष्ठ के स्रोत देखें",
-    theme: "GTA6 लुक",
-    themeOn: "क्लासिक लुक पर वापस जाएँ",
-    themeOff: "GTA6 नियॉन लुक चालू करें",
-    themeHint: "वैकल्पिक नियॉन थीम, डिफ़ॉल्ट रूप से बंद। आपकी पसंद इस डिवाइस पर सुरक्षित रहती है।",
     homeTitle: "एक नुस्खा, दो आवाज़ें",
     homeLead:
       "दादी माँ के पास हर चीज़ का नुस्खा है। दादा जी उसके पीछे का सबूत पढ़ते हैं — और जब ईमानदार जवाब “पर्याप्त शोध नहीं” हो, तो वही कहते हैं।",
