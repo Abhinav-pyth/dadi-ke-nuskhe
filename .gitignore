@@ -17,3 +17,5 @@ coverage
 .freebuff
 .dev-server.log
 .dev-server.pid
+
+.vercel
