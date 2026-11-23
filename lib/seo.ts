@@ -46,6 +46,19 @@ interface SeoInput {
 }
 
 /**
+ * The <title> a page actually ships. SERP titles are truncated around 60
+ * characters, so the brand suffix is only worth its width when the whole thing
+ * still fits; otherwise the page title stands alone and the brand is left to
+ * Google's own site-name display. Shared with scripts/validate-content.ts so
+ * duplicate-title detection compares what is really rendered.
+ */
+export function pageTitle(lang: Lang, title: string, path: string) {
+  const MAX_TITLE = 60;
+  const branded = `${title} | ${SITE.name[lang]}`;
+  return path === `/${lang}` || branded.length > MAX_TITLE ? title : branded;
+}
+
+/**
  * Builds language-aware metadata: per-language title/description, canonical,
  * and reciprocal hreflang pairs (hi-IN, en-IN, x-default → Hindi).
  */
@@ -70,12 +83,7 @@ export function buildMetadata({
     languages["x-default"] = lang === "hi" ? absoluteUrl(path) : absoluteUrl(alternatePath);
   }
 
-  // SERP titles are truncated around 60 characters. The brand suffix is only
-  // worth its width when the whole thing still fits; otherwise the page title
-  // stands alone and the brand is left to Google's own site-name display.
-  const MAX_TITLE = 60;
-  const branded = `${title} | ${SITE.name[lang]}`;
-  const fullTitle = path === `/${lang}` || branded.length > MAX_TITLE ? title : branded;
+  const fullTitle = pageTitle(lang, title, path);
 
   return {
     title: fullTitle,
