@@ -24,14 +24,14 @@ export function MedicalSafetyNotice({
   return (
     <aside
       className={cn(
-        "rounded-2xl border border-saffron-200 bg-saffron-100/60 p-4 text-sm leading-relaxed text-[#6b4a1d]",
+        "rounded-2xl border border-saffron-200 bg-[var(--notice-amber-bg)] p-4 text-sm leading-relaxed text-[var(--notice-amber-text)]",
         className,
       )}
       aria-labelledby="medical-notice-heading"
     >
       <p
         id="medical-notice-heading"
-        className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-saffron-600"
+        className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-[var(--notice-amber-heading)]"
       >
         <Info aria-hidden="true" className="h-4 w-4" />
         {labels.medicalSafety.title}
@@ -47,19 +47,28 @@ export function MedicalSafetyNotice({
   );
 }
 
-export function EmergencyNotice({ lang, className }: { lang: Lang; className?: string }) {
+export function EmergencyNotice({
+  lang,
+  className,
+  headingId = "emergency-heading",
+}: {
+  lang: Lang;
+  className?: string;
+  /** Unique per instance: the callout is rendered twice on remedy pages. */
+  headingId?: string;
+}) {
   const labels = t(lang);
   return (
     <aside
       className={cn(
-        "rounded-2xl border border-clay/25 bg-[#FDF3EE] p-5 text-sm leading-relaxed text-[#7a3324]",
+        "rounded-2xl border bg-[var(--notice-emergency-bg)] p-5 text-sm leading-relaxed text-[var(--notice-emergency-text)] border-[var(--notice-emergency-border)]",
         className,
       )}
-      aria-labelledby="emergency-heading"
+      aria-labelledby={headingId}
     >
       <p
-        id="emergency-heading"
-        className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-clay"
+        id={headingId}
+        className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-[var(--notice-emergency-heading)]"
       >
         <ShieldAlert aria-hidden="true" className="h-4 w-4" />
         {EMERGENCY.title[lang]}
@@ -67,7 +76,7 @@ export function EmergencyNotice({ lang, className }: { lang: Lang; className?: s
       <p className="mt-2">{EMERGENCY.text[lang]}</p>
       <a
         href={`tel:${EMERGENCY.number}`}
-        className="mt-3 inline-flex items-center gap-2 rounded-full bg-clay px-4 py-2 text-xs font-semibold text-white hover:bg-[#9c462f]"
+        className="mt-3 inline-flex items-center gap-2 rounded-full bg-[var(--notice-emergency-action)] px-4 py-2 text-xs font-semibold text-[var(--notice-emergency-action-text)] hover:bg-[var(--notice-emergency-action-hover)]"
       >
         <Phone aria-hidden="true" className="h-3.5 w-3.5" />
         {labels.emergency.call}
@@ -111,7 +120,7 @@ export function SectionSafetyNotice({
     return (
       <aside
         className={cn(
-          "rounded-2xl border border-saffron-200 bg-saffron-100/60 p-4 text-sm leading-relaxed text-[#6b4a1d]",
+          "rounded-2xl border border-saffron-200 bg-[var(--notice-amber-bg)] p-4 text-sm leading-relaxed text-[var(--notice-amber-text)]",
           className,
         )}
       >

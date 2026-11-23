@@ -13,6 +13,10 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // Hindi is the primary language, so the bare origin goes straight to it
+      // instead of serving its own indexable page alongside /hi.
+      { source: "/", destination: "/hi", permanent: true },
+
       // Policy pages resolve to the English experience.
       { source: "/about", destination: "/en/about", permanent: true },
       { source: "/contact", destination: "/en/contact", permanent: true },

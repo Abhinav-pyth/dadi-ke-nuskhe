@@ -8,7 +8,8 @@ const tones: Record<Tone, string> = {
   leaf: "bg-leaf-50 text-leaf-800 border-leaf-200",
   saffron: "bg-saffron-100 text-saffron-600 border-saffron-200",
   neutral: "bg-cream-100 text-ink-muted border-cream-300",
-  warning: "bg-[#FDF2E9] text-clay border-[#F2D6C4]",
+  warning:
+    "bg-[var(--badge-warning-bg)] text-[var(--badge-warning-text)] border-[var(--badge-warning-border)]",
 };
 
 export function Badge({

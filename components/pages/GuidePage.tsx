@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { AdSlot } from "@/components/AdSlot";
 import { ArticleMetadata } from "@/components/ArticleMetadata";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { DadiDadaPanel } from "@/components/DadiDadaPanel";
 import { FaqList } from "@/components/FaqList";
 import { JsonLd } from "@/components/JsonLd";
 import {
@@ -93,6 +94,7 @@ export function GuidePage({
   ];
 
   const toc = [
+    { id: "dadi-vs-dada", label: labels.dadiDada.eyebrow },
     { id: "what-is", label: labels.guide.whatIs },
     ...(guide.symptoms?.length ? [{ id: "symptoms", label: labels.guide.symptoms }] : []),
     ...(guide.causes?.length ? [{ id: "causes", label: labels.guide.causes }] : []),
@@ -105,7 +107,9 @@ export function GuidePage({
     ...(guide.storage?.length ? [{ id: "storage", label: labels.guide.storage }] : []),
     { id: "who", label: labels.guide.whoShouldAsk },
     ...(guide.seeDoctor?.length ? [{ id: "doctor", label: labels.guide.seeDoctor }] : []),
-    ...(guide.emergency?.length ? [{ id: "emergency", label: labels.guide.emergency }] : []),
+    // "emergency-signs" keeps this anchor distinct from the EmergencyNotice
+    // callout's own id="emergency-heading".
+    ...(guide.emergency?.length ? [{ id: "emergency-signs", label: labels.guide.emergency }] : []),
     ...(guide.faqs.length ? [{ id: "faqs", label: labels.common.faqTitle }] : []),
     { id: "references", label: labels.common.sources },
   ];
@@ -180,6 +184,8 @@ export function GuidePage({
                 ))}
               </div>
 
+              <DadiDadaPanel lang={lang} entry={guide} />
+
               <Block id="what-is" title={labels.guide.whatIs}>
                 <div className="space-y-4 text-[15px] leading-relaxed text-ink-muted">
                   {guide.whatIs.map((paragraph) => (
@@ -239,7 +245,7 @@ export function GuidePage({
                             {remedy.evidence}
                           </p>
                           {remedy.caution ? (
-                            <p className="mt-2 flex gap-2 rounded-xl bg-[#FDF3EE] p-3 text-xs leading-relaxed text-[#7a3324]">
+                            <p className="mt-2 flex gap-2 rounded-xl bg-[var(--notice-emergency-bg)] p-3 text-xs leading-relaxed text-[var(--notice-emergency-text)]">
                               <ShieldAlert aria-hidden="true" className="mt-0.5 h-3.5 w-3.5 shrink-0 text-clay" />
                               <span>
                                 <strong className="font-semibold">{labels.guide.caution}:</strong> {remedy.caution}
@@ -333,7 +339,7 @@ export function GuidePage({
 
               {guide.emergency?.length ? (
                 <>
-                  <Block id="emergency" title={labels.guide.emergency}>
+                  <Block id="emergency-signs" title={labels.guide.emergency}>
                     <List items={guide.emergency} tone="warning" />
                   </Block>
                   <EmergencyNotice lang={lang} />
@@ -425,7 +431,7 @@ export function GuidePage({
             <div className="rounded-2xl border border-leaf-900/[0.08] bg-cream-50 p-5">
               <TableOfContents items={toc} label={labels.common.onThisPage} />
             </div>
-            {isRemedy ? <EmergencyNotice lang={lang} /> : null}
+            {isRemedy ? <EmergencyNotice lang={lang} headingId="emergency-sidebar-heading" /> : null}
             {isRemedy ? null : (
               <p className="flex gap-2 rounded-2xl border border-leaf-900/10 bg-cream-100/60 p-4 text-xs leading-relaxed text-ink-muted">
                 <Info aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-saffron-500" />

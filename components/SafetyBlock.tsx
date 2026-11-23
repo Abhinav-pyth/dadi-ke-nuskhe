@@ -31,7 +31,12 @@ export function FoodSafetyNotice({ lang, className }: { lang: Lang; className?: 
 export function CosmeticSafetyNotice({ lang, className }: { lang: Lang; className?: string }) {
   const labels = t(lang);
   return (
-    <aside className={cn("rounded-2xl border border-saffron-200 bg-saffron-100/60 p-4 text-sm leading-relaxed text-[#6b4a1d]", className)}>
+    <aside
+      className={cn(
+        "rounded-2xl border border-saffron-200 bg-[var(--notice-amber-bg)] p-4 text-sm leading-relaxed text-[var(--notice-amber-text)]",
+        className,
+      )}
+    >
       <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-saffron-600">
         <Sparkles aria-hidden="true" className="h-4 w-4" />
         {labels.cosmeticSafety.title}

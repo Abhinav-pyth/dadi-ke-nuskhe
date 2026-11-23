@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { AdSlot } from "@/components/AdSlot";
 import { CategoryCard } from "@/components/CategoryCard";
+import { DadiDadaStrip } from "@/components/DadiDadaStrip";
 import { EntryCard } from "@/components/EntryCard";
 import { MedicalSafetyNotice } from "@/components/MedicalSafetyNotice";
 import { Newsletter } from "@/components/Newsletter";
@@ -153,6 +154,8 @@ export function HomePage({ lang }: { lang: Lang }) {
           </div>
         </div>
       </section>
+
+      <DadiDadaStrip lang={lang} />
 
       {/* Sections */}
       <section className="container-page py-16" aria-labelledby="home-sections">

@@ -6,6 +6,7 @@ import { getTranslationMap } from "@/lib/entries";
 import { fontVariables } from "@/lib/fonts";
 import { LANG_META } from "@/lib/i18n";
 import { organizationSchema, websiteSchema } from "@/lib/schema";
+import { THEME_BOOTSTRAP } from "@/lib/theme";
 import type { Lang } from "@/lib/types";
 
 /**
@@ -18,8 +19,10 @@ export function RootDocument({ lang, children }: { lang: Lang; children: React.R
   const skip = lang === "hi" ? "मुख्य सामग्री पर जाएँ" : "Skip to main content";
 
   return (
-    <html lang={LANG_META[lang].htmlLang} className={fontVariables}>
+    <html lang={LANG_META[lang].htmlLang} className={fontVariables} suppressHydrationWarning>
       <body className="min-h-screen bg-cream text-ink">
+        {/* Applies the saved optional theme before paint to avoid a flash. */}
+        <script dangerouslySetInnerHTML={{ __html: THEME_BOOTSTRAP }} />
         <div id="top" aria-hidden="true" />
         <a href="#main-content" className="skip-link">
           {skip}

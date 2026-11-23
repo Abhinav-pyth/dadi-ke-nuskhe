@@ -115,9 +115,24 @@ export function buildMetadata({
       description,
       images: [image.url],
     },
+    // max-image-preview:large is what makes these pages eligible for Google
+    // Discover's large photo cards; the default (standard) caps the preview.
     robots: noindex
       ? { index: false, follow: true }
-      : { index: true, follow: true, googleBot: { index: true, follow: true } },
+      : {
+          index: true,
+          follow: true,
+          "max-image-preview": "large",
+          "max-snippet": -1,
+          "max-video-preview": -1,
+          googleBot: {
+            index: true,
+            follow: true,
+            "max-image-preview": "large",
+            "max-snippet": -1,
+            "max-video-preview": -1,
+          },
+        },
     verification: siteVerification(),
   };
 }
