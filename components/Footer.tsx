@@ -51,6 +51,11 @@ export function Footer({ lang }: { lang: Lang }) {
                 </li>
               ))}
               <li>
+                <a className="text-cream-100/80 hover:text-cream-50" href={`/${lang}/jan-aushadhi`}>
+                  {labels.nav.janAushadhi}
+                </a>
+              </li>
+              <li>
                 <a className="text-cream-100/80 hover:text-cream-50" href={categoriesPath(lang)}>
                   {labels.footer.categories}
                 </a>

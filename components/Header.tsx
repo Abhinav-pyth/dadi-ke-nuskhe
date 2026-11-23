@@ -13,7 +13,7 @@ import { sectionPath } from "@/lib/sections";
 import type { Lang, SectionKey } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
-const NAV: { key: SectionKey | "home" | "categories"; labelKey: string }[] = [
+const NAV: { key: SectionKey | "home" | "categories" | "jan-aushadhi"; labelKey: string }[] = [
   { key: "home", labelKey: "home" },
   { key: "home-remedies", labelKey: "remedies" },
   { key: "recipes", labelKey: "recipes" },
@@ -21,6 +21,7 @@ const NAV: { key: SectionKey | "home" | "categories"; labelKey: string }[] = [
   { key: "beauty", labelKey: "beauty" },
   { key: "homemade-products", labelKey: "homemade" },
   { key: "household-tips", labelKey: "tips" },
+  { key: "jan-aushadhi", labelKey: "janAushadhi" },
   { key: "categories", labelKey: "categories" },
 ];
 
@@ -31,13 +32,16 @@ export function Header({ lang, pairs }: { lang: Lang; pairs: Record<string, stri
   const [menuOpen, setMenuOpen] = useState(false);
 
   const items = NAV.map((item) => ({
+    key: item.key,
     label: labels.nav[item.labelKey as keyof typeof labels.nav],
     href:
       item.key === "home"
         ? `/${lang}`
         : item.key === "categories"
           ? `/${lang}/categories`
-          : sectionPath(lang, item.key as SectionKey),
+          : item.key === "jan-aushadhi"
+            ? `/${lang}/jan-aushadhi`
+            : sectionPath(lang, item.key as SectionKey),
   }));
 
   useEffect(() => {
@@ -85,6 +89,9 @@ export function Header({ lang, pairs }: { lang: Lang; pairs: Record<string, stri
               )}
             >
               {item.label}
+              {item.key === "jan-aushadhi" ? (
+                <span className="ml-1 inline-block h-1.5 w-1.5 rounded-full bg-saffron-500 align-middle" aria-hidden="true" />
+              ) : null}
             </Link>
           ))}
         </nav>
@@ -146,6 +153,11 @@ export function Header({ lang, pairs }: { lang: Lang; pairs: Record<string, stri
                   )}
                 >
                   {item.label}
+                  {item.key === "jan-aushadhi" ? (
+                    <span className="ml-2 rounded-full bg-saffron-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.1em] text-saffron-600">
+                      new
+                    </span>
+                  ) : null}
                 </Link>
               ))}
             </nav>

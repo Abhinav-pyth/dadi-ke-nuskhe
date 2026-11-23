@@ -25,6 +25,7 @@ import {
   getStats,
 } from "@/lib/entries";
 import { t } from "@/lib/copy";
+import { JANAUSHADHI_EXAMPLES } from "@/lib/janaushadhi";
 import {
   categoryPath,
   collectionPath,
@@ -187,6 +188,48 @@ export function HomePage({ lang }: { lang: Lang }) {
               {point}
             </p>
           ))}
+        </div>
+      </section>
+
+      {/* Jan Aushadhi launch */}
+      <section className="container-page pt-12" aria-labelledby="home-janaushadhi">
+        <div className="overflow-hidden rounded-3xl border border-saffron-500/25 bg-gradient-to-br from-cream-50 via-cream-100 to-leaf-50 p-6 shadow-card sm:p-8">
+          <div className="grid gap-6 lg:grid-cols-[1.3fr_1fr] lg:items-center">
+            <div>
+              <Badge tone="saffron">{labels.janaushadhi.newBadge}</Badge>
+              <h2
+                id="home-janaushadhi"
+                className={`mt-3 text-2xl leading-snug text-leaf-900 sm:text-[1.7rem] ${
+                  lang === "hi" ? "font-hindi-serif" : "font-serif"
+                }`}
+              >
+                {labels.janaushadhi.homeLaunchTitle}
+              </h2>
+              <p className="mt-2 max-w-xl text-sm leading-relaxed text-ink-muted">
+                {labels.janaushadhi.homeLaunchBody}
+              </p>
+              <Link
+                href={`/${lang}/jan-aushadhi`}
+                className="mt-5 inline-flex items-center gap-1.5 rounded-full bg-leaf-700 px-4 py-2.5 text-xs font-semibold text-cream-50 transition-colors hover:bg-leaf-800"
+              >
+                {labels.janaushadhi.homeLaunchCta}
+                <ArrowRight aria-hidden="true" className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+            <ul className="grid gap-1.5 text-sm">
+              {JANAUSHADHI_EXAMPLES.slice(0, 5).map((term) => (
+                <li key={term}>
+                  <Link
+                    href={`/${lang}/jan-aushadhi?q=${encodeURIComponent(term)}`}
+                    className="flex items-center justify-between rounded-xl bg-cream-50/80 px-3 py-2 text-leaf-800 ring-1 ring-leaf-900/[0.06] transition-colors hover:bg-cream-50"
+                  >
+                    {term}
+                    <ArrowRight aria-hidden="true" className="h-3.5 w-3.5 text-leaf-600" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 

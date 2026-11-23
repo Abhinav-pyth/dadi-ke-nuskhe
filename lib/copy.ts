@@ -23,6 +23,7 @@ const en = {
     skip: "Skip to main content",
     language: "Language",
     openSearch: "Open search",
+    janAushadhi: "Jan Aushadhi",
   },
   common: {
     home: "Home",
@@ -320,6 +321,64 @@ const en = {
     disclosure:
       "Advertising never influences our editorial decisions. Product links may be affiliate links and will always be disclosed.",
   },
+  janaushadhi: {
+    navLabel: "Jan Aushadhi",
+    newBadge: "New launch",
+    seoTitle: "Jan Aushadhi Medicine Search (PMBJP)",
+    seoDescription:
+      "Search the government's Jan Aushadhi (PMBJP) basket by medicine name or salt formula and see the printed MRP, pack size and drug code before you visit a kendra.",
+    title: "Find your medicine in the Jan Aushadhi list — by name or salt formula",
+    lead: "Jan Aushadhi Kendras sell generic medicines at government-set prices. Search the official PMBJP list to see whether the salt you were prescribed is in the basket, what the pack contains and the printed MRP.",
+    searchLabel: "Search a medicine or salt",
+    searchPlaceholder: "Paracetamol, Metformin, Cetirizine…",
+    searchCta: "Check price",
+    examplesTitle: "Try one",
+    stats: "{medicines} medicines · {groups} therapeutic groups · official list of {date}",
+    resultOne: "product found",
+    resultsMany: "products found",
+    resultsFor: "for",
+    inGroup: "in",
+    showingFirst: "Showing the first {shown} of {total}. Add another word to narrow it down.",
+    noResultsTitle: "No match in the Jan Aushadhi list",
+    noResultsBody:
+      "Nothing in the official basket matches that spelling. Try the salt name rather than a brand — “Paracetamol” instead of the brand on the strip — or browse a therapeutic group.",
+    resultsLabel: "Jan Aushadhi products",
+    drugCode: "Drug code",
+    composition: "Composition",
+    mrp: "MRP",
+    pack: "Pack",
+    mrpPending: "Under process",
+    browseGroups: "Browse by therapeutic group",
+    allProducts: "All products",
+    clear: "Clear filter",
+    how1Title: "Search by salt, not brand",
+    how1Body:
+      "Jan Aushadhi sells generic medicines, so brands never appear here. Search the salt or formula printed on your prescription.",
+    how2Title: "Note the drug code",
+    how2Body:
+      "Every product carries an official drug code. Showing it at the counter is the quickest way to get the exact item.",
+    how3Title: "Confirm at the kendra",
+    how3Body:
+      "MRP is the printed price for the pack shown. Stock differs by kendra, so call ahead or check the Sugam app before travelling.",
+    priceTitle: "Why the price is lower",
+    priceBody:
+      "Under PMBJP a medicine is priced at no more than half the average price of the top three branded versions, and PMBI states that Jan Aushadhi prices are 50%–80% lower than branded medicines.",
+    priceSource: "Official PMBJP page",
+    safetyTitle: "Read this before you buy",
+    safetyBody:
+      "This page mirrors a government list; it is not a prescription, a pharmacy or medical advice. Never start, stop or swap a medicine on your own — especially antibiotics, blood pressure, diabetes, thyroid or psychiatric medicines. Ask the pharmacist or your doctor whether the generic version suits you, and keep taking what has been prescribed until they say otherwise.",
+    notMedical: "Information only — not medical advice.",
+    sourceTitle: "Where this data comes from",
+    sourceBody:
+      "Product names, pack sizes, drug codes and MRP are copied from the official PMBJP product and MRP list published by PMBI, Department of Pharmaceuticals. Prices change when the government revises them, so treat the kendra's printed label as final.",
+    sourceList: "Official product and MRP list",
+    sourceHome: "Jan Aushadhi (PMBJP) home",
+    updated: "List pulled on",
+    homeLaunchTitle: "New: check a medicine's Jan Aushadhi price",
+    homeLaunchBody:
+      "Search the government's Jan Aushadhi basket by medicine name or salt formula and see the printed MRP before you visit a kendra.",
+    homeLaunchCta: "Search medicines",
+  },
 };
 
 type Copy = typeof en;
@@ -343,6 +402,7 @@ const hi: Copy = {
     skip: "मुख्य सामग्री पर जाएँ",
     language: "भाषा",
     openSearch: "खोज खोलें",
+    janAushadhi: "जन औषधि",
   },
   common: {
     home: "होम",
@@ -639,6 +699,64 @@ const hi: Copy = {
     label: "विज्ञापन",
     disclosure:
       "विज्ञापन हमारे संपादकीय निर्णयों को प्रभावित नहीं करते। उत्पाद लिंक संबद्ध (affiliate) हो सकते हैं और उनकी जानकारी हमेशा दी जाती है।",
+  },
+  janaushadhi: {
+    navLabel: "जन औषधि",
+    newBadge: "नई शुरुआत",
+    seoTitle: "जन औषधि दवा खोज (PMBJP)",
+    seoDescription:
+      "सरकार की जन औषधि (PMBJP) सूची में दवा के नाम या सॉल्ट फ़ॉर्मूले से खोजें और केंद्र पर जाने से पहले छपी हुई MRP, पैक और ड्रग कोड देखें।",
+    title: "जन औषधि सूची में अपनी दवा खोजें — नाम या सॉल्ट फ़ॉर्मूले से",
+    lead: "जन औषधि केंद्रों पर सरकार तय कीमत पर जेनेरिक दवाइयाँ मिलती हैं। आधिकारिक PMBJP सूची में देखें कि आपको लिखा गया सॉल्ट उपलब्ध है या नहीं, पैक में क्या है और छपी हुई MRP कितनी है।",
+    searchLabel: "दवा या सॉल्ट खोजें",
+    searchPlaceholder: "पैरासिटामोल, मेटफॉर्मिन, सिट्रीज़ीन…",
+    searchCta: "कीमत देखें",
+    examplesTitle: "आज़माएँ",
+    stats: "{medicines} दवाइयाँ · {groups} चिकित्सा समूह · {date} की आधिकारिक सूची",
+    resultOne: "दवा मिली",
+    resultsMany: "दवाइयाँ मिलीं",
+    resultsFor: "खोज:",
+    inGroup: "समूह:",
+    showingFirst: "पहली {shown} दिखाई जा रही हैं, कुल {total}। और शब्द जोड़कर खोज छोटी करें।",
+    noResultsTitle: "जन औषधि सूची में कुछ नहीं मिला",
+    noResultsBody:
+      "इस वर्तनी से आधिकारिक सूची में कुछ मेल नहीं खाता। ब्रांड के बजाय सॉल्ट का नाम आज़माएँ — पत्ती पर लिखे ब्रांड की जगह “पैरासिटामोल” — या किसी चिकित्सा समूह से देखें।",
+    resultsLabel: "जन औषधि उत्पाद",
+    drugCode: "ड्रग कोड",
+    composition: "संरचना",
+    mrp: "MRP",
+    pack: "पैक",
+    mrpPending: "प्रक्रिया में",
+    browseGroups: "चिकित्सा समूह से देखें",
+    allProducts: "सभी उत्पाद",
+    clear: "फ़िल्टर हटाएँ",
+    how1Title: "ब्रांड नहीं, सॉल्ट से खोजें",
+    how1Body:
+      "जन औषधि में जेनेरिक दवाइयाँ मिलती हैं, इसलिए यहाँ ब्रांड नहीं दिखते। पर्चे पर लिखा सॉल्ट या फ़ॉर्मूला खोजें।",
+    how2Title: "ड्रग कोड नोट करें",
+    how2Body:
+      "हर उत्पाद का एक आधिकारिक ड्रग कोड होता है। काउंटर पर यह दिखाना सबसे आसान तरीका है।",
+    how3Title: "केंद्र पर पुष्टि करें",
+    how3Body:
+      "MRP दिखाए गए पैक की छपी हुई कीमत है। हर केंद्र पर स्टॉक अलग होता है, इसलिए निकलने से पहले फ़ोन करें या सुगम ऐप देखें।",
+    priceTitle: "कीमत कम क्यों है",
+    priceBody:
+      "PMBJP में दवा की कीमत शीर्ष तीन ब्रांडेड दवाओं की औसत कीमत के अधिकतम आधे पर तय होती है, और PMBI के अनुसार जन औषधि की कीमतें ब्रांडेड दवाओं से 50%–80% कम हैं।",
+    priceSource: "आधिकारिक PMBJP पृष्ठ",
+    safetyTitle: "खरीदने से पहले यह पढ़ें",
+    safetyBody:
+      "यह पृष्ठ सरकारी सूची की जानकारी है — पर्चा, फार्मेसी या चिकित्सकीय सलाह नहीं। अपनी मर्ज़ी से कोई दवा शुरू, बंद या बदलें नहीं — खासकर एंटीबायोटिक, ब्लड प्रेशर, शुगर, थायरॉइड या मानसिक स्वास्थ्य की दवाएँ। फार्मासिस्ट या डॉक्टर से पूछें कि जेनेरिक वर्ज़न आपके लिए ठीक है या नहीं, और जो लिखा गया है उसे तब तक लेते रहें जब तक वे कुछ और न कहें।",
+    notMedical: "केवल जानकारी — चिकित्सकीय सलाह नहीं।",
+    sourceTitle: "यह जानकारी कहाँ से है",
+    sourceBody:
+      "दवाओं के नाम, पैक, ड्रग कोड और MRP औषधि विभाग के PMBI द्वारा प्रकाशित आधिकारिक PMBJP सूची से लिए गए हैं। सरकार संशोधन करे तो कीमतें बदल जाती हैं, इसलिए केंद्र पर छपा लेबल अंतिम मानें।",
+    sourceList: "आधिकारिक उत्पाद और MRP सूची",
+    sourceHome: "जन औषधि (PMBJP) होम",
+    updated: "सूची ली गई",
+    homeLaunchTitle: "नया: दवा की जन औषधि कीमत देखें",
+    homeLaunchBody:
+      "सरकार की जन औषधि सूची में दवा के नाम या सॉल्ट फ़ॉर्मूले से खोजें और केंद्र जाने से पहले छपी हुई MRP देखें।",
+    homeLaunchCta: "दवा खोजें",
   },
 };
 

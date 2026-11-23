@@ -11,7 +11,7 @@ import { SITE_URL } from "@/lib/site";
 export default function sitemap(): MetadataRoute.Sitemap {
   const items = [...getSitemapItems("hi"), ...getSitemapItems("en")];
 
-  return items.map((item) => {
+  const pages: MetadataRoute.Sitemap = items.map((item) => {
     const lang = item.path.startsWith("/hi") ? "hi" : "en";
     const other = lang === "hi" ? "en" : "hi";
     const alternateUrl = item.alternatePath ? `${SITE_URL}${item.alternatePath}` : undefined;
@@ -33,4 +33,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ...(Object.keys(languages).length ? { alternates: { languages } } : {}),
     };
   });
+
+  // The Jan Aushadhi price finder is one landing page per language; searches
+  // inside it are marked noindex, so only the entry points are listed.
+  const janAushadhi: MetadataRoute.Sitemap = (["hi", "en"] as const).map((lang) => {
+    const other = lang === "hi" ? "en" : "hi";
+    return {
+      url: `${SITE_URL}/${lang}/jan-aushadhi`,
+      lastModified: new Date("2026-11-23"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: {
+        languages: {
+          [LANG_META[lang].hreflang]: `${SITE_URL}/${lang}/jan-aushadhi`,
+          [LANG_META[other].hreflang]: `${SITE_URL}/${other}/jan-aushadhi`,
+          "x-default": `${SITE_URL}/hi/jan-aushadhi`,
+        },
+      },
+    };
+  });
+
+  return [...pages, ...janAushadhi];
 }
