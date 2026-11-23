@@ -379,6 +379,7 @@ export function GuidePage({
 
               <div className="space-y-8">
                 <RelatedArticles
+                  id="related-ingredients"
                   title={labels.common.relatedIngredients}
                   items={ingredients.map((ingredient) => ({
                     title: ingredient.name,
@@ -389,6 +390,7 @@ export function GuidePage({
                 />
 
                 <RelatedArticles
+                  id="related-entries"
                   title={labels.common.related}
                   items={related.map((item) => ({
                     title: item.title,
@@ -399,6 +401,7 @@ export function GuidePage({
                 />
 
                 <RelatedArticles
+                  id="related-categories"
                   title={labels.common.relatedCategories}
                   items={guide.categories
                     .map((key) => getCategoryByKey(lang, key))

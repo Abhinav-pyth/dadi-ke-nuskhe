@@ -16,7 +16,7 @@ import {
   getCollectionByKey,
 } from "@/lib/entries";
 import { t } from "@/lib/copy";
-import { categoryPath, collectionPath, collectionsPath } from "@/lib/i18n";
+import { collectionPath, collectionsPath } from "@/lib/i18n";
 import { collectionPageSchema } from "@/lib/schema";
 import { getSection } from "@/lib/sections";
 import type { Lang } from "@/lib/types";

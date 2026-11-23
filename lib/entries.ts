@@ -63,8 +63,6 @@ const CONTENT = {
 } as const;
 
 const isPublished = (item: { status: string }) => item.status === "published";
-const newestFirst = <T extends { publishedAt: string }>(items: T[]) =>
-  [...items].sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1));
 
 /* -------------------------------------------------------------------------- */
 /* Entries (recipes + guides)                                                 */

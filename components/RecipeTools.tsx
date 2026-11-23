@@ -32,11 +32,7 @@ function formatQuantity(value: number): string {
   return String(Math.round(rounded * 10) / 10);
 }
 
-function ingredientLine(
-  ingredient: IngredientItem,
-  factor: number,
-  base: number,
-): string {
+function ingredientLine(ingredient: IngredientItem, factor: number): string {
   const amount =
     ingredient.quantity === null ? "" : formatQuantity(ingredient.quantity * factor);
   const parts = [amount, ingredient.unit, ingredient.item].filter(Boolean).join(" ");
@@ -97,7 +93,7 @@ export function RecipeTools({
       title,
       `${labels.recipe.servings}: ${servings} (${yieldLabel})`,
       "",
-      ...ingredients.map((ingredient) => `• ${ingredientLine(ingredient, factor, baseServings)}`),
+      ...ingredients.map((ingredient) => `• ${ingredientLine(ingredient, factor)}`),
       "",
       typeof window !== "undefined" ? window.location.href : "",
     ].join("\n");

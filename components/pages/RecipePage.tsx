@@ -285,6 +285,7 @@ export function RecipePage({ lang, slug }: { lang: Lang; slug: string }) {
 
             <div className="mt-10 space-y-8">
               <RelatedArticles
+                id="related-recipes"
                 title={labels.common.relatedRecipes}
                 items={related
                   .filter((item) => item.kind === "recipe")
@@ -297,6 +298,7 @@ export function RecipePage({ lang, slug }: { lang: Lang; slug: string }) {
               />
 
               <RelatedArticles
+                id="related-ingredients"
                 title={labels.common.relatedIngredients}
                 items={ingredients.map((ingredient) => ({
                   title: ingredient.name,
@@ -308,6 +310,7 @@ export function RecipePage({ lang, slug }: { lang: Lang; slug: string }) {
 
               {related.filter((item) => item.kind !== "recipe").length ? (
                 <RelatedArticles
+                  id="related-guides"
                   title={labels.common.relatedGuides}
                   items={related
                     .filter((item) => item.kind !== "recipe")
@@ -322,6 +325,7 @@ export function RecipePage({ lang, slug }: { lang: Lang; slug: string }) {
 
               {collections.length ? (
                 <RelatedArticles
+                  id="related-collections"
                   title={labels.nav.collections}
                   items={collections.map((collection) => ({
                     title: collection!.title,
@@ -333,6 +337,7 @@ export function RecipePage({ lang, slug }: { lang: Lang; slug: string }) {
               ) : null}
 
               <RelatedArticles
+                id="related-categories"
                 title={labels.common.relatedCategories}
                 items={recipe.categories
                   .map((key) => getCategoryByKey(lang, key))

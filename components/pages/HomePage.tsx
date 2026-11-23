@@ -1,4 +1,4 @@
-import { ArrowRight, BookOpen, CheckCircle2, ChefHat, Snowflake, Sparkles } from "lucide-react";
+import { ArrowRight, BookOpen, CheckCircle2, Snowflake, Sparkles } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 

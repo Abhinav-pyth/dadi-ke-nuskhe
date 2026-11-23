@@ -20,6 +20,7 @@ export function RelatedArticles({
   title: string;
   items: RelatedLink[];
   className?: string;
+  /** Unique per page: these sections repeat several times on an entry page. */
   id?: string;
 }) {
   if (items.length === 0) return null;

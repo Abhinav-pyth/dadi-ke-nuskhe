@@ -3,7 +3,6 @@ import Link from "next/link";
 
 import { t } from "@/lib/copy";
 import {
-  CLEANING_SAFETY_DISCLAIMER,
   COSMETIC_SAFETY_DISCLAIMER,
   EMERGENCY,
   FOOD_SAFETY_DISCLAIMER,

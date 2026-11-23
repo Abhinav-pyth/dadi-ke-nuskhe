@@ -18,7 +18,7 @@ import {
   tagsForSection,
 } from "@/lib/entries";
 import { t } from "@/lib/copy";
-import { categoryPath, searchPath } from "@/lib/i18n";
+import { searchPath } from "@/lib/i18n";
 import { getSection, sectionPath } from "@/lib/sections";
 import { collectionPageSchema } from "@/lib/schema";
 import { sortTags, tagLabel } from "@/lib/tags";
