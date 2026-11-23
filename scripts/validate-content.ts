@@ -71,6 +71,15 @@ const stats = (lang: Lang) => ({
 
 console.log("Content report:", JSON.stringify({ hi: stats("hi"), en: stats("en") }, null, 2));
 
+// Not a content error, but the most damaging SEO misconfiguration there is: an
+// unset origin publishes localhost canonical, hreflang and sitemap URLs.
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "";
+if (!/^https:\/\//.test(siteUrl)) {
+  console.log(
+    `\nSEO note: NEXT_PUBLIC_SITE_URL is ${siteUrl ? `"${siteUrl}"` : "unset"}, so canonical, hreflang, og:url and sitemap URLs fall back to http://localhost:3000. Set it to the https production origin before deploying.`,
+  );
+}
+
 if (warnings.length) {
   console.log(`\n${warnings.length} warning(s):`);
   for (const warning of warnings) console.log(`  ⚠ ${warning.item}: ${warning.message}`);

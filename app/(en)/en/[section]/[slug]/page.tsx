@@ -25,6 +25,7 @@ export async function generateMetadata({
   const section = sectionBySlug("en", sectionSlug);
   if (!section) return {};
 
+
   const entry = getEntry("en", section.key, slug);
   if (!entry) return {};
   const translation = getEntryByKey("hi", entry.key);
@@ -33,8 +34,9 @@ export async function generateMetadata({
     lang: "en",
     title: entry.seoTitle,
     description: entry.metaDescription,
-    path: `/${sectionSlug}/${entry.slug}`,
+    path: sectionEntryPath("en", section.key, entry.slug),
     alternatePath: translation ? sectionEntryPath("hi", translation.section, translation.slug) : undefined,
+    image: entry.image,
     type: "article",
     publishedTime: entry.publishedAt,
     modifiedTime: entry.updatedAt,

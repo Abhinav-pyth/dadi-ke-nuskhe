@@ -27,6 +27,7 @@ import { t } from "@/lib/copy";
 import { categoryPath, ingredientPath } from "@/lib/i18n";
 import { getSection, sectionPath } from "@/lib/sections";
 import { articleSchema, breadcrumbSchema, faqSchema } from "@/lib/schema";
+import { DEFAULT_OG_IMAGE } from "@/lib/seo";
 import type { Lang, SectionKey } from "@/lib/types";
 import { formatDate } from "@/lib/utils";
 
@@ -122,6 +123,7 @@ export function GuidePage({
             publishedAt: guide.publishedAt,
             updatedAt: guide.updatedAt,
             section: section.name[lang],
+            image: (guide.image ?? DEFAULT_OG_IMAGE).url,
             keywords: guide.keywords,
             reviewer:
               guide.reviewStatus === "approved" && guide.medicalReviewer ? guide.medicalReviewer : null,

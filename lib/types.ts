@@ -70,9 +70,15 @@ export interface Step {
   tip?: string;
 }
 
+/**
+ * Social card / article image. Optional on an entry: when absent the page
+ * falls back to DEFAULT_OG_IMAGE in lib/seo.ts.
+ */
 export interface ImageRef {
-  src: string;
+  /** Path under /public, e.g. "/images/og/panjeeri-kaise-banaye.jpg". */
+  url: string;
   alt: string;
+  /** Real pixel dimensions of the exported file. */
   width: number;
   height: number;
 }

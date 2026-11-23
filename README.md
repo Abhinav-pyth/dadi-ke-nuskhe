@@ -115,7 +115,9 @@ Both images are AI-generated placeholders and are declared at their true pixel s
 | `public/images/hero-ingredients.jpg` | 1184 × 880 | `components/pages/HomePage.tsx` |
 | `public/images/og-default.jpg` | 1392 × 752 | `lib/seo.ts` (`DEFAULT_OG_IMAGE`) |
 
-Replace each with photography at the same pixel dimensions and keep the file names, so no code changes are needed. If a replacement is a different size, update the declared `width`/`height` in those two files to match. The hero is cropped by `object-cover` at 320, 420 and 480 px tall, so keep its subject centred; `og-default.jpg` is the social card for every page.
+Replace each with photography at the same pixel dimensions and keep the file names, so no code changes are needed. If a replacement is a different size, update the declared `width`/`height` in those two files to match. The hero is cropped by `object-cover` at 320, 420 and 480 px tall, so keep its subject centred; `og-default.jpg` is the social card for every page that does not set its own.
+
+A recipe or guide may set an optional `image: { url, alt, width, height }` field, with `url` a path under `public/`, to use its own social card and recipe structured-data image. Entries without it fall back to `DEFAULT_OG_IMAGE` through `buildMetadata`; `npm run validate:content` checks the field when it is present.
 
 ## Deployment
 

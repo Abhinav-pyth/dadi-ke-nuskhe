@@ -6,7 +6,7 @@ import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = buildMetadata({
   lang: "hi",
-  title: `${SITE.name.hi} — ${SITE.tagline.hi}`,
+  title: `${SITE.name.hi} — घरेलू नुस्खे और रेसिपी`,
   description: SITE.description.hi,
   path: "/hi",
   alternatePath: "/en",

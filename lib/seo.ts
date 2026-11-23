@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 
 import { LANG_META } from "./i18n";
 import { SITE, SITE_URL } from "./site";
-import type { Lang } from "./types";
+import type { ImageRef, Lang } from "./types";
 
-export const DEFAULT_OG_IMAGE = {
+/** Used by every page that does not carry its own `image`. */
+export const DEFAULT_OG_IMAGE: ImageRef = {
   url: "/images/og-default.jpg",
   width: 1392,
   height: 752,
@@ -36,7 +37,8 @@ interface SeoInput {
   path: string;
   /** Path of the translated page when one exists. Enables reciprocal hreflang. */
   alternatePath?: string;
-  image?: { url: string; width: number; height: number; alt: string };
+  /** Per-entry social card; falls back to DEFAULT_OG_IMAGE. */
+  image?: ImageRef;
   type?: "website" | "article";
   noindex?: boolean;
   publishedTime?: string;
@@ -68,7 +70,12 @@ export function buildMetadata({
     languages["x-default"] = lang === "hi" ? absoluteUrl(path) : absoluteUrl(alternatePath);
   }
 
-  const fullTitle = path === `/${lang}` ? title : `${title} | ${SITE.name[lang]}`;
+  // SERP titles are truncated around 60 characters. The brand suffix is only
+  // worth its width when the whole thing still fits; otherwise the page title
+  // stands alone and the brand is left to Google's own site-name display.
+  const MAX_TITLE = 60;
+  const branded = `${title} | ${SITE.name[lang]}`;
+  const fullTitle = path === `/${lang}` || branded.length > MAX_TITLE ? title : branded;
 
   return {
     title: fullTitle,

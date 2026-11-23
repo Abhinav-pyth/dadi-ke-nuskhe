@@ -24,6 +24,7 @@ import { t } from "@/lib/copy";
 import { categoryPath, collectionPath, ingredientPath } from "@/lib/i18n";
 import { getSection, sectionPath } from "@/lib/sections";
 import { breadcrumbSchema, faqSchema, recipeSchema } from "@/lib/schema";
+import { DEFAULT_OG_IMAGE } from "@/lib/seo";
 import type { Lang } from "@/lib/types";
 import { formatDate } from "@/lib/utils";
 
@@ -54,6 +55,8 @@ export function RecipePage({ lang, slug }: { lang: Lang; slug: string }) {
     .map((key) => getCollectionByKey(lang, key))
     .filter((collection) => collection?.entryKeys.includes(recipe.key));
   const totalMinutes = recipe.prepMinutes + recipe.cookMinutes;
+  // Structured data must point at the same card as the social metadata.
+  const ogImage = recipe.image ?? DEFAULT_OG_IMAGE;
 
   const crumbs = [
     { name: labels.common.home, href: `/${lang}` },
@@ -71,7 +74,7 @@ export function RecipePage({ lang, slug }: { lang: Lang; slug: string }) {
             recipe,
             url: path,
             sectionName: section.name[lang],
-            imageUrl: "/images/og-default.jpg",
+            imageUrl: ogImage.url,
           }),
           ...(recipe.faqs.length ? [faqSchema(recipe.faqs)] : []),
         ]}

@@ -58,6 +58,8 @@ interface ArticleSchemaInput {
   publishedAt: string;
   updatedAt: string;
   section?: string;
+  /** Site path of the article's social card; omitted when none is declared. */
+  image?: string;
   keywords?: string[];
   reviewer?: { name: string; role: string } | null;
 }
@@ -78,6 +80,7 @@ export function articleSchema(input: ArticleSchemaInput): JsonLd {
     url: `${SITE_URL}${input.url}`,
     datePublished: input.publishedAt,
     dateModified: input.updatedAt,
+    ...(input.image ? { image: [`${SITE_URL}${input.image}`] } : {}),
     articleSection: input.section,
     keywords: input.keywords?.join(", "),
     author: { "@type": "Organization", name: SITE.name[input.lang] },

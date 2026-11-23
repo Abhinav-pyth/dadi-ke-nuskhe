@@ -33,10 +33,11 @@ export async function generateMetadata({
     lang: "hi",
     title: entry.seoTitle,
     description: entry.metaDescription,
-    path: `/${sectionSlug}/${entry.slug}`,
+    path: sectionEntryPath("hi", section.key, entry.slug),
     alternatePath: translation
       ? sectionEntryPath("en", translation.section, translation.slug)
       : undefined,
+    image: entry.image,
     type: "article",
     publishedTime: entry.publishedAt,
     modifiedTime: entry.updatedAt,

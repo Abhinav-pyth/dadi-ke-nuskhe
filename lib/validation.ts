@@ -9,6 +9,7 @@ import type {
   CollectionEntry,
   ContentStatus,
   GuideEntry,
+  ImageRef,
   IngredientEntry,
   Lang,
   RecipeEntry,
@@ -47,6 +48,7 @@ interface CommonInput {
   reviewStatus: ReviewStatus;
   publishedAt: string;
   updatedAt: string;
+  image?: ImageRef;
   medicalReviewer?: { name: string; role: string } | null;
 }
 
@@ -67,6 +69,17 @@ function checkCommon(input: CommonInput, label: string, issues: Issue[]) {
       item: name,
       message: `metaDescription is ${input.metaDescription.length} chars (aim 70–165)`,
     });
+
+  // Optional social card: absent means the page uses DEFAULT_OG_IMAGE, which is
+  // valid. Present means it must be a local file declared at its real size.
+  if (input.image) {
+    if (!input.image.url?.startsWith("/"))
+      issues.push({ level: "error", item: name, message: `image url must be a site path: ${input.image.url}` });
+    if (!input.image.alt?.trim())
+      issues.push({ level: "error", item: name, message: "image without alt text" });
+    if (!(input.image.width > 0 && input.image.height > 0))
+      issues.push({ level: "error", item: name, message: "image without positive width and height" });
+  }
 
   if (input.references.length === 0)
     issues.push({ level: "error", item: name, message: "no references" });
